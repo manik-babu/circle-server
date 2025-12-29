@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express"
 import { auth as betterAuth } from '../lib/auth';
 
-
 export enum UserRole {
     USER = "USER",
     ADMIN = "ADMIN"
@@ -20,7 +19,8 @@ const auth = (...roles: UserRole[]) => {
             }
             if (!roles.includes(session.user.role as UserRole)) {
                 return res.status(401).json({
-                    message: "You are not authorized"
+                    success: false,
+                    message: "You don't have permission to access"
                 });
             }
 

@@ -12,6 +12,7 @@ app.use(cors({
 }))
 app.use(express.json());
 app.use(express.urlencoded());
+
 // better auth
 app.all('/api/auth/*splat', toNodeHandler(betterAuth));
 
