@@ -17,7 +17,7 @@ app.use(express.urlencoded());
 app.all('/api/auth/*splat', toNodeHandler(betterAuth));
 
 
-app.get('/', auth(UserRole.USER), async (req: Request, res: Response) => {
+app.get('/', async (req: Request, res: Response) => {
     res.json({
         message: "Hello world"
     });
