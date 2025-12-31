@@ -1,1 +1,1 @@
-# A blog application where 
+# A blog application where user can 
