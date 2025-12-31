@@ -1,1 +1,1 @@
-# A blog
+# A blog application 
