@@ -18,9 +18,31 @@ const createPost = async (req: Request, res: Response) => {
         });
     }
 }
+const getPost = async (req: Request, res: Response) => {
+    try {
+        const searchText = req.query.searchText as string || "";
+
+
+
+        const result = await postService.getPost(searchText);
+
+        res.status(200).json({
+            message: "All post retrived",
+            data: result
+        });
+    } catch (error: any) {
+        console.error('Server error: ', error.message);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error!',
+            errors: error.message
+        });
+    }
+}
 
 const postController = {
     createPost,
+    getPost,
 }
 
 export default postController;

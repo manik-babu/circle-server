@@ -14,7 +14,30 @@ const createPost = async (payload: Pick<Post, "caption" | "status" | "attachment
     return createdPost;
 }
 
+const getPost = async (searchText: string) => {
+    const data = await prisma.post.findMany({
+        where: {
+            AND: [
+                {
+                    status: 'PUBLIC'
+                },
+                {
+                    caption: {
+                        contains: searchText,
+                        mode: 'insensitive'
+                    }
+                }
+            ]
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    });
+    return data;
+}
+
 const postService = {
     createPost,
+    getPost,
 }
 export default postService;
