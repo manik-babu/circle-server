@@ -47,10 +47,17 @@ const getPostById = async (userId: string, status: 'PUBLIC' | 'PRIVATE' | 'ALL')
     });
     return data;
 }
-
+const deletePost = async (postId: string) => {
+    const result = await prisma.post.delete({
+        where: {
+            id: postId
+        }
+    })
+}
 const postService = {
     createPost,
     getPost,
     getPostById,
+    deletePost,
 }
 export default postService;

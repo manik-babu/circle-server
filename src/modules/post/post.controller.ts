@@ -59,6 +59,19 @@ const getPostById = async (req: Request, res: Response) => {
     }
 }
 
+const deletePost = async (req: Request, res: Response) => {
+    try {
+        //
+    } catch (error: any) {
+        console.error('Server error: ', error.message);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error!',
+            errors: error.message
+        });
+    }
+}
+
 const postController = {
     createPost,
     getPost,
