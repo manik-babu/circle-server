@@ -18,6 +18,7 @@ model Post {
   caption    String
   attachment String?
   authorId   String
+  author     User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
   status     PostStatus
   comments   Comment[]
   createdAt  DateTime   @default(now())
@@ -30,6 +31,7 @@ model Comment {
   id        String    @id @default(uuid())
   content   String
   authorId  String //? handle with better auth
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
   postId    String
   post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
   parantId  String?
@@ -40,6 +42,7 @@ model Comment {
 
   @@index([postId])
   @@index([parantId])
+  @@index([authorId])
 }
 
 enum PostStatus {
@@ -57,8 +60,9 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
-
-  role String? @default("USER")
+  posts         Post[]
+  comments      Comment[]
+  role          String?   @default("USER")
 
   @@unique([email])
   @@map("user")
