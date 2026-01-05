@@ -68,7 +68,8 @@ const deletePost = async (postId: string, user: any) => {
         return null;
     }
 
-    if (post.id != user.id && user.role == UserRole.USER) {
+    if (post.authorId != user.id && user.role == UserRole.USER) {
+        console.log(post.id, user.id, user.role)
         return undefined;
     }
     const result = await prisma.post.delete({
