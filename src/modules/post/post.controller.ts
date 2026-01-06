@@ -92,12 +92,46 @@ const deletePost = async (req: Request, res: Response) => {
         });
     }
 }
+const updatePost = async (req: Request, res: Response) => {
+    try {
+        const data = await postService.updatePost(req.params.postId!, req.body, req.user);
+
+        if (data === null) {
+            return res.status(404).json({
+                success: false,
+                message: "Post update failed",
+                error: "Post not found!"
+            });
+        }
+        if (data == undefined) {
+            return res.status(403).json({
+                success: false,
+                message: "Post update failed",
+                error: "You are not permited"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Post updated successfully",
+            data: data
+        });
+    } catch (error: any) {
+        console.error('Server error: ', error.message);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error!',
+            errors: error.message
+        });
+    }
+}
 
 const postController = {
     createPost,
     getPost,
     getPostById,
     deletePost,
+    updatePost
 }
 
 export default postController;

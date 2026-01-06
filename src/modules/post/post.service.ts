@@ -81,10 +81,33 @@ const deletePost = async (postId: string, user: any) => {
 
     return result;
 }
+
+const updatePost = async (postId: string, payload: { caption?: string, attachment?: string, status?: 'PRIVATE' | 'PUBLIC' }, user: any) => {
+    const post = await prisma.post.findUnique({
+        where: {
+            id: postId
+        }
+    });
+    if (!post) {
+        return null;
+    }
+
+    if (post.authorId != user.id && user.role == UserRole.USER) {
+        return undefined;
+    }
+    const updatedPost = await prisma.post.update({
+        where: {
+            id: postId
+        },
+        data: payload
+    });
+    return updatedPost;
+}
 const postService = {
     createPost,
     getPost,
     getPostById,
     deletePost,
+    updatePost
 }
 export default postService;

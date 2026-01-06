@@ -8,8 +8,8 @@ const router = Router();
 router.post('/', auth(UserRole.ADMIN, UserRole.USER), postController.createPost);
 router.get('/', postController.getPost);
 router.get('/:userId', postController.getPostById);
-router.delete('/:postId', auth(UserRole.USER, UserRole.ADMIN), postController.deletePost)
-
+router.delete('/:postId', auth(UserRole.USER, UserRole.ADMIN), postController.deletePost);
+router.patch('/:postId', auth(UserRole.ADMIN, UserRole.USER), postController.updatePost);
 
 export const postRoute = router;
 
