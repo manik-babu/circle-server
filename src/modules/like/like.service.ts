@@ -12,14 +12,12 @@ const addLike = async (postId: string, userId: string) => {
         return null;
     }
 
-    // await prisma.like.create({
-    //     data: {
-    //         postId,
-    //         authorId: userId
-    //     }
-    // })
-    return true;
-
+    return await prisma.like.create({
+        data: {
+            postId,
+            authorId: userId
+        }
+    })
 
 }
 
