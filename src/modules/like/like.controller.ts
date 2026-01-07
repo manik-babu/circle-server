@@ -24,8 +24,26 @@ const like = async (req: Request, res: Response) => {
         });
     }
 }
+const getLikedPeople = async (req: Request, res: Response) => {
+    try {
+        const result = await likeService.getLikedPeople(req.params.postId!);
+
+        res.status(200).json({
+            message: "Liked people retrived successfully",
+            data: result
+        })
+    } catch (error: any) {
+        console.error('Server error: ', error.message);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error!',
+            errors: error.message
+        });
+    }
+}
 
 const likeController = {
     like,
+    getLikedPeople,
 }
 export default likeController;

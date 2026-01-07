@@ -38,8 +38,27 @@ const like = async (postId: string, userId: string) => {
         }
     }
 }
+const getLikedPeople = async (postId: string) => {
+    const data = await prisma.like.findMany({
+        where: {
+            postId
+        },
+        select: {
+            author: {
+                select: {
+                    id: true,
+                    name: true,
+                    image: true
+                }
+            },
+            createdAt: true
+        }
+    });
+    return data;
+}
 
 const likeService = {
     like,
+    getLikedPeople,
 }
 export default likeService;
