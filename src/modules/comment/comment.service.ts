@@ -65,10 +65,38 @@ const getPostComment = async (postId: string) => {
     return result.comments;
 }
 
+const getCommentReplies = async (commentId: string) => {
+    const result = await prisma.comment.findUnique({
+        where: {
+            id: commentId,
+        },
+        select: {
+            replies: {
+                include: {
+                    _count: {
+                        select: {
+                            replies: true
+                        }
+                    }
+                }
+            }
+
+        }
+    });
+
+    if (!result) {
+        return null;
+    }
+
+    return result.replies;
+}
+
 
 const commentService = {
     addComment,
     getPostComment,
+    getCommentReplies,
+
 }
 
 export default commentService;

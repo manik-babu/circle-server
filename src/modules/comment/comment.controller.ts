@@ -55,7 +55,7 @@ const getPostComment = async (req: Request, res: Response) => {
 }
 const getCommentReplies = async (req: Request, res: Response) => {
     try {
-        const result = await commentService.getPostComment(req.params.commentId!);
+        const result = await commentService.getCommentReplies(req.params.commentId!);
 
         if (!result) {
             return res.status(404).json({
