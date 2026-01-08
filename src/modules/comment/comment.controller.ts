@@ -33,7 +33,17 @@ const addComment = async (req: Request, res: Response) => {
 }
 const getPostComment = async (req: Request, res: Response) => {
     try {
+        const result = await commentService.getPostComment(req.params.postId!);
 
+        if (!result) {
+            return res.status(404).json({
+                message: "Post not found"
+            });
+        }
+        res.status(200).json({
+            message: "Comment retrived successfully",
+            data: result
+        });
     } catch (error: any) {
         console.error('Server error: ', error.message);
         res.status(500).json({
@@ -46,6 +56,7 @@ const getPostComment = async (req: Request, res: Response) => {
 
 const commentController = {
     addComment,
+    getPostComment,
 }
 export default commentController;
 

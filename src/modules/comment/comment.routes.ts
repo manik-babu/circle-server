@@ -6,6 +6,7 @@ import commentController from "./comment.controller";
 const router = Router();
 
 router.post('/', auth(UserRole.ADMIN, UserRole.USER), commentController.addComment);
+router.get('/:postId', commentController.getPostComment);
 
 
 export const commentRoute = router;

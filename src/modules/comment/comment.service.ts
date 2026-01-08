@@ -56,6 +56,7 @@ const getPostComment = async (postId: string) => {
 
 const commentService = {
     addComment,
+    getPostComment,
 }
 
 export default commentService;
