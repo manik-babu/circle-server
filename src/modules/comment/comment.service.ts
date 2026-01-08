@@ -36,6 +36,24 @@ const addComment = async (payload: { content: string, postId: string, parentId?:
     })
 }
 
+const getPostComment = async (postId: string) => {
+    const result = await prisma.post.findUnique({
+        where: {
+            id: postId
+        },
+        select: {
+            comments: true
+        }
+    });
+
+    if (!result) {
+        return null;
+    }
+
+    return result;
+}
+
+
 const commentService = {
     addComment,
 }

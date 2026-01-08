@@ -31,6 +31,18 @@ const addComment = async (req: Request, res: Response) => {
         });
     }
 }
+const getPostComment = async (req: Request, res: Response) => {
+    try {
+
+    } catch (error: any) {
+        console.error('Server error: ', error.message);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error!',
+            errors: error.message
+        });
+    }
+}
 
 const commentController = {
     addComment,
