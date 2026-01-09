@@ -1,3 +1,4 @@
+import CustomError from "../../helper/customError";
 import { prisma } from "../../lib/prisma";
 
 
@@ -12,7 +13,7 @@ const addComment = async (payload: { content: string, postId: string, parentId?:
     });
 
     if (!post) {
-        return null;
+        throw new CustomError.NotFoundError("Post not found");
     }
     if (payload.parentId) {
         const parentComment = await prisma.comment.findUnique({
