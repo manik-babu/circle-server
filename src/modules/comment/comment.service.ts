@@ -52,6 +52,9 @@ const getPostComment = async (postId: string) => {
                             replies: true
                         }
                     }
+                },
+                orderBy: {
+                    createdAt: 'desc'
                 }
             }
 
