@@ -1,1 +1,1 @@
-# A blog application where user can post and comment
+# Server for Circle
