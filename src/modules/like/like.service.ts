@@ -24,9 +24,7 @@ const like = async (postId: string, userId: string) => {
                 }
             }
         });
-        return {
-            message: "Unliked"
-        }
+        return "Unliked";
     } catch (error) {
         await prisma.like.create({
             data: {
@@ -34,9 +32,7 @@ const like = async (postId: string, userId: string) => {
                 authorId: userId
             }
         });
-        return {
-            message: "liked"
-        }
+        return "liked";
     }
 }
 const getLikedPeople = async (postId: string) => {

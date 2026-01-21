@@ -6,6 +6,7 @@ const addComment = async (req: Request, res: Response, next: NextFunction) => {
         const result = await commentService.addComment(req.body, req.user?.id!);
 
         res.status(201).json({
+            ok: true,
             message: "Comment created",
             data: result
         });
@@ -18,6 +19,7 @@ const getPostComment = async (req: Request, res: Response, next: NextFunction) =
         const result = await commentService.getPostComment(req.params.postId!);
 
         res.status(200).json({
+            ok: true,
             message: "Comment retrived successfully",
             data: result
         });
@@ -30,6 +32,7 @@ const getCommentReplies = async (req: Request, res: Response, next: NextFunction
         const result = await commentService.getCommentReplies(req.params.commentId!);
 
         res.status(200).json({
+            ok: true,
             message: "Replies retrived successfully",
             data: result
         });
