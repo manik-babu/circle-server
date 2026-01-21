@@ -29,13 +29,14 @@ app.get('/', (req: Request, res: Response) => {
     res.status(200).json({
         status: "success",
         message: "API is running successfully",
-        server: "Bloggie API",
+        server: "Circle API",
         version: "1.0.0",
         timestamp: new Date().toISOString()
     });
 });
 app.use((req: Request, res: Response) => {
     res.status(404).json({
+        ok: false,
         message: "Route not found",
         method: req.method,
         url: req.url,

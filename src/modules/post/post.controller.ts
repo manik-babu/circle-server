@@ -6,6 +6,7 @@ const createPost = async (req: Request, res: Response, next: NextFunction) => {
         const result = await postService.createPost(req.body, req.user?.id as string);
 
         res.status(201).json({
+            ok: true,
             message: 'Post created successfully',
             data: result
         });
@@ -19,6 +20,7 @@ const getPost = async (req: Request, res: Response, next: NextFunction) => {
         const result = await postService.getPost(searchText);
 
         res.status(200).json({
+            ok: true,
             message: "All post retrived",
             data: result
         });
@@ -33,6 +35,7 @@ const getPostById = async (req: Request, res: Response, next: NextFunction) => {
         const result = await postService.getPostById(req.params.userId!, status as ('PRIVATE' | 'PUBLIC' | 'ALL'));
 
         res.status(200).json({
+            ok: true,
             message: "Post retrived successfully",
             data: result
         });
@@ -46,7 +49,7 @@ const deletePost = async (req: Request, res: Response, next: NextFunction) => {
         const data = await postService.deletePost(req.params.postId!, req.user);
 
         res.status(200).json({
-            success: true,
+            ok: true,
             message: "Post deleted successfully",
             data: data
         });
@@ -60,7 +63,7 @@ const updatePost = async (req: Request, res: Response, next: NextFunction) => {
         const data = await postService.updatePost(req.params.postId!, req.body, req.user);
 
         res.status(200).json({
-            success: true,
+            ok: true,
             message: "Post updated successfully",
             data: data
         });
