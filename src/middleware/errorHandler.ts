@@ -22,6 +22,7 @@ const globalErrorHandler = (error: any, req: Request, res: Response, next: NextF
 
     res.status(statusCode).json({
         ok: false,
+        status: statusCode,
         message: statusMessage,
         error: error
     })

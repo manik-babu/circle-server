@@ -36,7 +36,6 @@ const getPost = async (searchText: string) => {
                 select: {
                     id: true,
                     name: true,
-                    email: true,
                     image: true
                 }
             },
